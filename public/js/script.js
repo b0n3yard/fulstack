@@ -5,20 +5,23 @@ function show(e){
 
     if (e.target.innerText === 'submit'){
         const emils = $('#email')
-        const pswrd = document.querySelector('#password')
-        console.log(emils.innerText)
+        const pswrd = $('#password')
         const nwpass = {
-            email: emils.innerText,
-            pass: pswrd.value
+            email: emils.val(),
+            password: pswrd.val()
         }
+        console.log(nwpass)
         fetch('/register',{
             method: 'POST',
             headers:{
-                'content-type':'aplication.json'
+                'content-type': 'application/json'
             },
-            body:JSON.stringify()
+            body:JSON.stringify(nwpass)
+        }).then(res =>{
+            console.log(res)
+            window.location = '/'
         })
     }
- console.log(e.target.innerHtml)
+ console.log(e.target.textarea)
 }
 hi.on('click',show)
