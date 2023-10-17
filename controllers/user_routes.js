@@ -6,12 +6,9 @@ user = require('../models/user.js')
 router.post('/register',async (cro,sro)=>{
     try{
     const data =  await user.create(cro.body)
-    console.log(data)
+    // console.table(data)
     sro.redirect('/')
-//   sro.json({
-//     message: 'user added',
-//     user: data
-// })
+
 
 } catch(err){
     sro.redirect('/register')
@@ -20,6 +17,9 @@ router.post('/register',async (cro,sro)=>{
 
     }
 // console.log(hi)
+    
+})
+router.post('/login',(cro,sro)=>{
     
 })
 module.exports =router
