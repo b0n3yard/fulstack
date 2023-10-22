@@ -10,11 +10,18 @@
     <header class="row justify-between align-center">
     <h3> Post it</h3>
     <nav class="row align-center">
+      {{#if User}}
+      <p>Welcome, {{User.email}}</p>
+      
+      <a href="/login">post</a>
+      <a href="/logout">Logout</a>
+      {{else}}
+      {{log "not user"}}
+        {{log user}}
       <a href="/register">Register</a>
       <span>or</span>
       <a href="/login">Login</a>
-      <a href="/login">post</a>
-      <a href="/login">Logout</a>
+      {{/if}}
 
     </nav>
   </header>

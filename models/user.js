@@ -1,5 +1,6 @@
 const {Model, DataTypes} = require('sequelize')
 const db = require('../db/connections')
+const {hash, compare} = require('bcrypt')
 
 class user extends Model{}
 
@@ -24,7 +25,16 @@ user.init({
 },{
     modelName:'user',
     sequelize: db,
-    timestamps:false
+    timestamps:false,
+    hooks:{
+        async beforeCreate(user){
+            user.password = await hash(user.password, 10)
+            return user;
+            }
+    }
 })
-
+user.prototype.validatePass = async function(form_password){
+    const is_valid = await compare(form_password, this.password)
+    return is_valid
+}
 module.exports= user;
