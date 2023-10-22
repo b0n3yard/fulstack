@@ -1,9 +1,10 @@
 const {Model, DataTypes} = require('sequelize')
 const db = require('../db/connections')
+const { hash, compare } = require('bcrypt');
 
-class user extends Model{}
+class User extends Model{}
 
-user.init({
+User.init({
     email:{
         type: DataTypes.STRING,
         allowNull:false,
@@ -24,7 +25,16 @@ user.init({
 },{
     modelName:'user',
     sequelize: db,
-    timestamps:false
+    timestamps:false,
+    hooks:{
+        async beforeCreate(user){
+            user.password = await hash(user.password, 10)
+            return user
+        }
+    }
 })
-
-module.exports= user;
+User.prototype.validatePass = async function(form_password){
+        const is_valid = await compare(form_password, this.password)
+        return is_valid
+    }
+module.exports= User;

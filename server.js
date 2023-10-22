@@ -13,9 +13,17 @@ const POST = process.env.PORT || 3335
 app.engine('.hbs', engine({extname:'.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', './views');
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true
+    }
+  }));
 app.use('/', routes)
 app.use('/', routes2)
 
-db.sync({force: false}).then(()=>{
+db.sync({force: true}).then(()=>{
 app.listen(POST, () => {console.log(`started, listening on ${POST}`); console.log('stop server by hitting ctrl + c')})
 })
