@@ -1,0 +1,12 @@
+<form action="/post/{{post.id}}?_method=PUT" method="PUT">
+<h1>edit post</h1>
+{{#each errors}}
+<p>{{this}}</p>
+{{/each}}
+
+<input type="text" name="text" placeholder="type your message" value="{{post.text}}">
+<button>submit</button>
+<a class="cancel-btn"href="/profile">
+<button>cancel</button>
+</a>
+</form>
