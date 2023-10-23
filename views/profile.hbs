@@ -1,0 +1,39 @@
+<h1>hi {{user.email}}</h1>
+
+{{#if user.posts}}
+<section>
+<h2>your posts</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>text</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each user.posts}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{text}}</td>
+            <td>
+            <a href="/post/edit/{{post.id}}">
+            <button>edit</button>
+            </a>
+            </td>
+            <td>
+                <button data-id="{{post.id}}">delete</button>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+
+</table>
+
+</section>
+{{else}}
+<p>you dont have posts</p>
+
+{{/if}}

@@ -1,0 +1,10 @@
+<form class="" action="/post" method="POST">
+    <h1>post somthing</h1>
+    {{#each errors}}
+    <p>{{this}}</p>
+    {{/each}}
+
+    <input type="text" name="text" placeholder="write message">
+    <button>submit</button>
+
+</form>

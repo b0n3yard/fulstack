@@ -2,6 +2,7 @@ const express = require('express')
 const path =  require('path')
 const routes = require(path.join(__dirname,'controllers/view_routes'))
 const routes2 = require(path.join(__dirname,'controllers/user_routes'))
+const routes3 = require(path.join(__dirname,'controllers/post_routes'))
 const db = require('./db/connections')
 const { engine } = require('express-handlebars') ;
 const session = require('express-session') ;
@@ -23,7 +24,8 @@ app.use(session({
   }));
 app.use('/', routes)
 app.use('/', routes2)
+app.use('/', routes3)
 
-db.sync({force: true}).then(()=>{
+db.sync({force: false}).then(()=>{
 app.listen(POST, () => {console.log(`started, listening on ${POST}`); console.log('stop server by hitting ctrl + c')})
 })

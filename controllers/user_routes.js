@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const path =  require('path')
-const {User, post} = require('../models')
+const {User, post} = require('../models/index.js')
 // user = require('../models/user.js')
 // router.use(express.json())
 router.post('/register',async (cro,sro)=>{
@@ -24,18 +24,18 @@ router.post('/login',async (cro,sro)=>{
     const user = await User.findOne({
         where:{
             email: cro.body.email
-        },
-        raw:true
+        }
     })
-    console.log(user)
+    // console.log(cro.body.password)
     if(!user){
+        console.log('not user')
         cro.session.errors = ['no user found with this email']
-        return res.redirect('/login')
+        return sro.redirect('/login')
     }
     const pass_is_valid = await user.validatePass(cro.body.password)
 
     if(!pass_is_valid){
-        // cro.session.errors = ['password is incorrect']
+        cro.session.errors = ['password is incorrect']
         sro.redirect('/login')
     }
 
@@ -43,7 +43,7 @@ router.post('/login',async (cro,sro)=>{
     sro.redirect('/')
 })
 router.get('/logout', (cro,sro)=>{
-    cro.session.destroy()
-    sro.redirect('/')
+    // cro.session.destroy()
+    // sro.redirect('/')
 })
 module.exports =router
