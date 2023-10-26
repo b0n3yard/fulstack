@@ -38,12 +38,12 @@ router.post('/login',async (cro,sro)=>{
         cro.session.errors = ['password is incorrect']
         sro.redirect('/login')
     }
-
     cro.session.user_id = user.id
+    console.log(cro.session.user_id)
     sro.redirect('/')
 })
 router.get('/logout', (cro,sro)=>{
-    // cro.session.destroy()
-    // sro.redirect('/')
+    cro.session.destroy()
+    sro.redirect('/')
 })
 module.exports =router
