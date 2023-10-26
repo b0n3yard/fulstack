@@ -1,22 +1,25 @@
 <section>
     {{!-- {{#each post}}
     {{/each}} --}}
-    {{!-- {{log post}} --}}
+    {{log user}}
     {{!-- {{log 'session' session}} --}}
+    <h2>{{post.title}}</h2>
     {{post.text}}
     <span> by </span>
     {{post.author.username}}
+    <p>on:</p>
+    {{post.date}}
     {{#if session}}
     <form action="/post/{{post.id}}?_method=PUT" method="post">
     <input type="text" name="text" placeholder="edit a comment"id="comment" value="{{post.text}}">
-        <button type="submit" class="sub">submit</button>
+        <button type="submit" class="sub">edit post</button>
     </form>
     {{/if}}
     <form action="/createcomment" method="POST">
     <input type="hidden" name="post_id" value="{{post.id}}">
     {{!-- <input type="hidden" name="author_id" value="{{post.author.id}}"> --}}
     <input type="text" name="comment" placeholder="add a comment"id="comment">
-        <button type="submit" class="sub">submit</button>
+        <button type="submit" class="sub">add comment</button>
     </form>
     {{!-- {{log post.comments}} --}}
     {{#each post.comments}}

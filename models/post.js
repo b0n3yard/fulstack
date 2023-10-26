@@ -5,6 +5,10 @@ const dayjs = require('dayjs')
 class Post extends Model{}
 
 Post.init({
+    title:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
     text:{
         type:DataTypes.STRING,
         allowNull:false

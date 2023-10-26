@@ -24,6 +24,7 @@ router.get('/',async (cro,sro)=>{
             email:user.email
         }
     })
+
     }else{
     // sro.send(`<h1>hello there</h1>`)
     // sro.sendFile(path.join(__dirname,'../views/landing.html'))
@@ -31,11 +32,10 @@ router.get('/',async (cro,sro)=>{
         include:{model:User, 
         as:'author'},raw:false})
     // console.log(posts)
-    sro.render('landing',{post: posts.map(c=> c.get({plain:true})), name:'michael',
-    fruits:['pinaple','bannana','mango'],
-    names:[{name:'this'},{name:'another'},{name:'again'}]
+    sro.render('landing',{post: posts.map(c=> c.get({plain:true}))
    } )
 }
+
 })
 
 router.get('/register', (cro,sro)=>{
@@ -63,6 +63,7 @@ router.get('/profile', isauthenticated,authenticate,async (cro,sro)=>{
 })
 router.get('/edit_post/:id',isauthenticated,authenticate,async (cro,sro)=>{
     const posts = await post.findByPk(cro.params.id)
+    console.log(cro.user)
 
     sro.render('edit_post',{
         user:cro.user,
@@ -80,7 +81,7 @@ router.get('/viewpost/:id',async (cro,sro)=>{
         if(plain.author_id && cro.session.user_id && plain.author_id === cro.session.user_id ){
             is_author = true
         }
-        console.log('is the author',is_author)
+        console.log(cro.user)
     sro.render('viewpost',{
         user:cro.user,
         post: plain,

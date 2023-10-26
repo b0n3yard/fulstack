@@ -14,9 +14,12 @@
     {{#each posts}}
     <section>
     <a href="/viewpost/{{this.id}}">
+    <h2>{{this.title}}</h2>
     {{this.text}}
     <span> by </span>
     {{author.username}}
+     <p>on:</p>
+    <span>{{this.date}}</span>
     </a>
     </section>
     {{/each}}
@@ -25,8 +28,12 @@
     {{#each post}}
     <section>
     <a href="/viewpost/{{this.id}}">
+    <h2>{{this.title}}</h2>
     {{this.text}}
+    <span> by </span>
     {{author.username}}
+    <p>on:</p>
+    <span>{{this.date}}</span>
     </a>
     </section>
     {{/each}}

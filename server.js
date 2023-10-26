@@ -13,13 +13,19 @@ app.use(express.static(path.join(__dirname,'public')))
 const POST = process.env.PORT || 3335
 app.engine('.hbs', engine({extname:'.hbs'}));
 app.set('view engine', '.hbs');
+app.use(session({
+        secret:'some secret key',
+        resave: false,
+        saveUninitialized: true
+}))
 app.set('views', './views');
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
-      httpOnly: true
+      httpOnly: true,
+      maxAge:10000
     }
   }));
 app.use('/', routes)
