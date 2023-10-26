@@ -24,7 +24,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-      httpOnly: true
+      httpOnly: true,
+      maxAge:10000
     }
   }));
 app.use('/', routes)

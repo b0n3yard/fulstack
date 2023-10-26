@@ -9,7 +9,7 @@ router.post('/post',isauthenticated, async(cro,sro)=>{
         const posts = await post.create(cro.body)
         const user = await User.findByPk(cro.session.user_id)
         await user.addPost(posts)
-        sro.redirect('/')
+        sro.redirect('/profile')
     }catch(error){
         console.log(error)
         if(error.errors){
@@ -52,6 +52,6 @@ router.post('/createcomment',(cro,sro)=>{
         userId: cro.session.user_id,
         postId: test
     })
-    sro.redirect('/')
+    sro.redirect('/viewpost/'+test)
 })
 module.exports = router

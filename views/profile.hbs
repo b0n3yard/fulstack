@@ -16,7 +16,7 @@
         {{!-- {{log user}} --}}
         {{#each user.posts}}
         <tr>
-            <td>{{id}}</td>
+            <td><h3><a href="/viewpost/{{this.id}}">{{title}}</a></h3></td>
             
             <td><a href="/viewpost/{{this.id}}">{{text}}</a></td>
             
