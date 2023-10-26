@@ -11,9 +11,23 @@
 
 <section>
     {{#if user}}
-    <p>hi</p>
+    {{#each posts}}
+    <section>
+    <a href="/viewpost/{{this.id}}">
+    {{this.text}}
+    <span> by </span>
+    {{author.username}}
+    </a>
+    </section>
+    {{/each}}
     {{/if}}
-    {{#each names}}
-    {{name}}
+    {{log 'author' author}}
+    {{#each post}}
+    <section>
+    <a href="/viewpost/{{this.id}}">
+    {{this.text}}
+    {{author.username}}
+    </a>
+    </section>
     {{/each}}
 </section>

@@ -1,4 +1,4 @@
-<h1>hi {{user.email}}</h1>
+<h1>hi {{user.username}}</h1>
 
 {{#if user.posts}}
 <section>
@@ -13,17 +13,24 @@
         </tr>
     </thead>
     <tbody>
+        {{!-- {{log user}} --}}
         {{#each user.posts}}
         <tr>
             <td>{{id}}</td>
-            <td>{{text}}</td>
+            
+            <td><a href="/viewpost/{{this.id}}">{{text}}</a></td>
+            
             <td>
-            <a href="/post/edit/{{post.id}}">
+                {{log this}}
+            <a href="/edit_post/{{this.id}}">
             <button>edit</button>
             </a>
             </td>
             <td>
-                <button data-id="{{post.id}}">delete</button>
+                <form action="/post/delete/{{this.id}}" method="POST">
+                {{!-- <a href="/post/delete/{{this.id}}" > --}}
+                <button style=" width: 50px; height:30px;">delete</button>
+                </form>
             </td>
         </tr>
         {{/each}}
