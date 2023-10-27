@@ -7,7 +7,7 @@ function resetInactivityTimer() {
 }
 
 function logout() {
-    window.location.href = "http://localhost:3335/logout";
+    window.location.href = "/logout";
   console.log('Logged out due to inactivity');
 }
 
