@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "npm i express express-handlebars express-session bcrypt mysql2 sequelize dotenv --silent && npm i nodemon -D --silent",
-    "start": "nodemon server.js"
+    "test": "npm i express express-handlebars express-session bcrypt mysql2 sequelize dotenv dayjs console.table --silent && npm i nodemon -D --silent",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

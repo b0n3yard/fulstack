@@ -6,10 +6,10 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
+            <th>name</th>
             <th>text</th>
-            <th></th>
-            <th></th>
+            <th>edit</th>
+            <th>delete</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
             <td><a href="/viewpost/{{this.id}}">{{text}}</a></td>
             
             <td>
-                {{log this}}
+                {{!-- {{log this}} --}}
             <a href="/edit_post/{{this.id}}">
             <button>edit</button>
             </a>

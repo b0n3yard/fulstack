@@ -6,7 +6,29 @@ function isloggedin(req,res,next){
     }
     next()
 }
+function autologout(req,res,next){
+    
+    // if(!timeoutId){
+    let timeoutId = setTimeout(()=>{console.log('boo')},10000)
+    // }
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(()=>{
+        req.session.destroy()
+        console.log("destroyed")
+        console.log(timeoutId)
+    // res.redirect('/')
+    },10000)
+    // req.autologouttimeoutId = timeoutId
+    
+    next()
+    return timeoutId
+}
+async function clearlogout(timeoutId){
+     clearTimeout(timeoutId);
+    console.log(timeoutId)
 
+    console.log("cleared")
+}
 function isauthenticated(req,res,next){
     if(!req.session.user_id){
         return res.redirect('/')
@@ -31,4 +53,4 @@ async function authenticate(req,res,next){
 
     next()
 }
-module.exports = {isloggedin, isauthenticated,authenticate}
+module.exports = {isloggedin, isauthenticated,authenticate, autologout,clearlogout}

@@ -1,27 +1,19 @@
-// const hi = $('.this')
+let inactivityTimer;
+const inactivityTimeout = 300000
 
-// function show(e){
-//     e.preventDefault()
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(logout, inactivityTimeout);
+}
 
-//     if (e.target.innerText === 'submit'){
-//         const emils = $('#email')
-//         const pswrd = $('#password')
-//         const nwpass = {
-//             email: emils.val(),
-//             password: pswrd.val()
-//         }
-//         console.log(nwpass)
-//         fetch('/register',{
-//             method: 'POST',
-//             headers:{
-//                 'content-type': 'application/json'
-//             },
-//             body:JSON.stringify(nwpass)
-//         }).then(res =>{
-//             console.log(res)
-//             window.location = '/'
-//         })
-//     }
-//  console.log(e.target.textarea)
-// }
-// hi.on('click',show)
+function logout() {
+    window.location.href = "http://localhost:3335/logout";
+  console.log('Logged out due to inactivity');
+}
+
+document.addEventListener('mousemove', resetInactivityTimer);
+document.addEventListener('keydown', resetInactivityTimer);
+document.addEventListener('click', resetInactivityTimer);
+
+resetInactivityTimer();
+

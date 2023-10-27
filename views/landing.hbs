@@ -10,23 +10,28 @@
 </ul>
 
 <section>
+    
     {{#if user}}
     {{#each posts}}
-    <section>
+    
+        <section class=" column align-center text-center">
     <a href="/viewpost/{{this.id}}">
+        <article class="border">
     <h2>{{this.title}}</h2>
     {{this.text}}
     <span> by </span>
     {{author.username}}
      <p>on:</p>
     <span>{{this.date}}</span>
+    </article>
     </a>
     </section>
     {{/each}}
     {{/if}}
-    {{log 'author' author}}
+    {{!-- {{log 'author' author}} --}}
     {{#each post}}
-    <section>
+    <section class=" column align-center text-center">
+          <article class="border">
     <a href="/viewpost/{{this.id}}">
     <h2>{{this.title}}</h2>
     {{this.text}}
@@ -35,6 +40,7 @@
     <p>on:</p>
     <span>{{this.date}}</span>
     </a>
+    </article>
     </section>
     {{/each}}
 </section>

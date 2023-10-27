@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const path =  require('path')
 const {User, post,Comment} = require('../models/index.js')
-const { isauthenticated, authenticate } = require('./helpers/index.js')
+const { isauthenticated, authenticate, autologout, clearlogout } = require('./helpers/index.js')
 // const session = require('express-session')
 
 router.get('/',async (cro,sro)=>{
@@ -75,15 +75,15 @@ router.get('/viewpost/:id',async (cro,sro)=>{
     const posts = await post.findByPk(cro.params.id, { include: [{model:User,
         as:'author'},{model:Comment, include: [User]}]})
         const plain = posts.get({plain:true})
-        console.log('session', cro.session.user_id)
-        console.log('user id',plain.author_id)
+        // console.log('session', cro.session.user_id)
+        // console.log('user id',plain.author_id)
         let is_author = false
         if(plain.author_id && cro.session.user_id && plain.author_id === cro.session.user_id ){
             is_author = true
         }
-        console.log(cro.user)
+        // console.log("server user", cro.user)
     sro.render('viewpost',{
-        user:cro.user,
+        user:cro.session.user_id,
         post: plain,
         Title:'post' + posts.id,
         comment: posts.postId,

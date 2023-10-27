@@ -1,14 +1,18 @@
 <section>
     {{!-- {{#each post}}
     {{/each}} --}}
-    {{log user}}
+    {{!-- {{log 'user' user}} --}}
     {{!-- {{log 'session' session}} --}}
+    <section class=" column align-center text-center">
+        <article class="border">
     <h2>{{post.title}}</h2>
     {{post.text}}
     <span> by </span>
     {{post.author.username}}
     <p>on:</p>
     {{post.date}}
+    </article>
+    </section>
     {{#if session}}
     <form action="/post/{{post.id}}?_method=PUT" method="post">
     <input type="text" name="text" placeholder="edit a comment"id="comment" value="{{post.text}}">
@@ -23,6 +27,8 @@
     </form>
     {{!-- {{log post.comments}} --}}
     {{#each post.comments}}
+    <section class="row align-center text-center">
+        <article class=" comment align-center">
     {{this.text}}
     {{post.comments.text}}
     <span>by</span>
@@ -30,6 +36,8 @@
     {{this.user.username}}
     {{else}}
     <span>anonymous</span>
+    </article>
+    </section>
     {{/if}}
     {{/each}}
 </section>

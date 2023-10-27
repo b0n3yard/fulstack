@@ -39,7 +39,7 @@ router.post('/login',async (cro,sro)=>{
         sro.redirect('/login')
     }
     cro.session.user_id = user.id
-    console.log(cro.session.user_id)
+    // console.log(cro.session.user_id)
     sro.redirect('/')
 })
 router.get('/logout', (cro,sro)=>{
